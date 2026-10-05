@@ -1,0 +1,131 @@
+{
+  "indexVersion": 1,
+  "name": "10dian-ai Seedance Bridge Plugins",
+  "plugins": [
+    {
+      "key": "seedance-bridge",
+      "name": "Seedance Bridge",
+      "description": {
+        "en": "Official Seedance API bridge to an upstream New API",
+        "zh": "Seedance 官方协议到上游 New API 的桥接插件"
+      },
+      "iconFile": {
+        "path": "plugins/tasks/seedance-bridge/icon.svg",
+        "sha256": "205d51d88b239f0227cc1861c3bb3691d5d8b4519dd8cb98e7fb1618b9e5dd37"
+      },
+      "routes": [
+        {
+          "method": "POST",
+          "path": "/doubao/api/v3/contents/generations/tasks",
+          "type": "submit",
+          "decode": "createTask",
+          "render": "taskCreated"
+        },
+        {
+          "method": "GET",
+          "path": "/doubao/api/v3/contents/generations/tasks/:task_id",
+          "type": "query",
+          "render": "taskStatus",
+          "taskIdParam": "task_id"
+        }
+      ],
+      "usageSchema": {
+        "resolution": {
+          "enum": [
+            "480p",
+            "720p",
+            "1080p"
+          ],
+          "description": {
+            "en": "Output video resolution",
+            "zh": "输出视频分辨率"
+          },
+          "enumLabels": {
+            "480p": {
+              "en": "480p",
+              "zh": "480p"
+            },
+            "720p": {
+              "en": "720p",
+              "zh": "720p"
+            },
+            "1080p": {
+              "en": "1080p",
+              "zh": "1080p"
+            }
+          }
+        },
+        "tokens": {
+          "type": "number",
+          "unit": "token",
+          "description": {
+            "en": "Billing token unit price",
+            "zh": "计费 Token 单价"
+          }
+        },
+        "video_input": {
+          "enum": [
+            "none",
+            "video"
+          ],
+          "description": {
+            "en": "Reference video input",
+            "zh": "参考视频输入"
+          },
+          "enumLabels": {
+            "none": {
+              "en": "No reference video",
+              "zh": "无参考视频"
+            },
+            "video": {
+              "en": "Reference video",
+              "zh": "参考视频"
+            }
+          }
+        }
+      },
+      "usageExamples": [
+        {
+          "label": "720p · 5s",
+          "facts": {
+            "tokens": 108000,
+            "resolution": "720p",
+            "video_input": "none"
+          }
+        },
+        {
+          "label": "1080p · 5s",
+          "facts": {
+            "tokens": 243000,
+            "resolution": "1080p",
+            "video_input": "none"
+          }
+        },
+        {
+          "label": "720p · 5s · 参考视频",
+          "facts": {
+            "tokens": 108000,
+            "resolution": "720p",
+            "video_input": "video"
+          }
+        }
+      ],
+      "usageProfiles": null,
+      "models": [
+        "doubao-seedance-2-5-260628",
+        "jimeng-seedance-2.5",
+        "seedance-2.5"
+      ],
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "plugins/tasks/seedance-bridge/1.0.0/plugin.js",
+          "sha256": "64e0b3ad1092de4fab3eae2b6b4d42301ff2ebe301e2822ea6f5acfbf1a56e07",
+          "minApiVersion": 1,
+          "kind": "task"
+        }
+      ]
+    }
+  ]
+}
